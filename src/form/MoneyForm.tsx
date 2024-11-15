@@ -12,14 +12,14 @@ export const MoneyForm = ({control, fieldName, label}: FormInputPropsT
             <Grid container direction="row" columnSpacing={2}>
                 <Grid item xs={8}>
                     <TextFormInput
-                        control={{control}}
+                        control={control}
                         fieldName={`${fieldName}.magnitude`}
                         label="Amount"
                     />
                 </Grid>
                 <Grid item xs={4}>
                     <TextFormInput
-                        control={{control}}
+                        control={control}
                         fieldName={`${fieldName}.currency`}
                         label="Currency"
                     />
