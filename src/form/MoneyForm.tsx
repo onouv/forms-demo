@@ -1,6 +1,6 @@
 import {ReactElement} from "react";
-import {Box, Divider, Grid, Stack, TextField, Typography} from "@mui/material";
-import {Controller} from "react-hook-form";
+import {Box, Divider, Grid, Stack, Typography} from "@mui/material";
+import TextFormInput from "../components/TextFormInput";
 import FormInputPropsT from "../types/FormInputPropsT";
 
 export const MoneyForm = ({control, fieldName, label}: FormInputPropsT
@@ -11,42 +11,18 @@ export const MoneyForm = ({control, fieldName, label}: FormInputPropsT
             <Typography variant="subtitle1">{label}</Typography>
             <Grid container direction="row" columnSpacing={2}>
                 <Grid item xs={8}>
-                    <Controller
-                        name={`${fieldName}.magnitude`}
+                    <TextFormInput
                         control={control}
-                        render={({
-                           field: { onChange, value },
-                           fieldState: { error },
-                        }) => (
-                            <TextField
-                                helperText={error ? error.message : null}
-                                error={!!error}
-                                onChange={onChange}
-                                value={value}
-                                fullWidth
-                                label="Amount"
-                                variant="outlined"
-                            />
-                        )} />
+                        fieldName={`${fieldName}.magnitude`}
+                        label="Amount"
+                    />
                 </Grid>
                 <Grid item xs={4}>
-                    <Controller
-                        name={`${fieldName}.currency`}
+                    <TextFormInput
                         control={control}
-                        render={({
-                                     field: { onChange, value },
-                                     fieldState: { error },
-                                 }) => (
-                            <TextField
-                                helperText={error ? error.message : null}
-                                error={!!error}
-                                onChange={onChange}
-                                value={value}
-                                fullWidth
-                                label="Currency"
-                                variant="outlined"
-                            />
-                        )}/>
+                        fieldName={`${fieldName}.currency`}
+                        label="Currency"
+                    />
                 </Grid>
             </Grid>
         </Stack>
