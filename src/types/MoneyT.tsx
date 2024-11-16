@@ -1,10 +1,12 @@
+import CurrencyE from "./CurrencyE";
+
 type MoneyT = {
     magnitude: number;
-    currency: string;
+    currency: CurrencyE;
 }
 export const defaultMoney: MoneyT = {
     magnitude: 0,
-    currency: "EUR",
+    currency: CurrencyE.EUR,
 };
 
 
