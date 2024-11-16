@@ -2,6 +2,7 @@ import {ReactElement} from "react";
 import {Box, Divider, Grid, Stack, Typography} from "@mui/material";
 import TextFormInput from "../components/TextFormInput";
 import FormInputPropsT from "../types/FormInputPropsT";
+import {fieldNames} from "./MoneyT";
 
 export const MoneyForm = ({control, fieldName, label}: FormInputPropsT
 ): ReactElement => (
@@ -13,14 +14,14 @@ export const MoneyForm = ({control, fieldName, label}: FormInputPropsT
                 <Grid item xs={8}>
                     <TextFormInput
                         control={control}
-                        fieldName={`${fieldName}.magnitude`}
+                        fieldName={`${fieldName}.${fieldNames.magnitude}`}
                         label="Amount"
                     />
                 </Grid>
                 <Grid item xs={4}>
                     <TextFormInput
                         control={control}
-                        fieldName={`${fieldName}.currency`}
+                        fieldName={`${fieldName}.${fieldNames.currency}`}
                         label="Currency"
                     />
                 </Grid>
