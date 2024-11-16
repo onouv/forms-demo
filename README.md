@@ -18,11 +18,8 @@ by the child component to it as a parameter. In this case, `ExpenseForm` passes 
 - the child component must then add the correct names of the sub-fields as defined in the child-type `MoneyT` to
 the parameter and use the results as `name` parameter for the `Controller`.
 
-
-
-# Advantages
-
-# Disadvantages
+`MoneyT` provides a typesafe constant containing the associated field names which is supervised by the compiler. This avoids
+working with string literals depending on the programmatical names of fields.
 
 
 # Getting Started 

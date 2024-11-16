@@ -10,7 +10,8 @@ export const defaultMoney: MoneyT = {
 
 /*
     Creating field names as strings in a typesafe way which
-    is supervised by the compiler for use in libs such as react-form-hook, etc.
+    is supervised by the compiler for use with string-based introspection in
+    libs such as react-form-hook, etc.
  */
 type MoneyFieldNamesT = {
     magnitude: keyof Pick<MoneyT, "magnitude">;
