@@ -5,20 +5,21 @@ that I came up with after quite a bit of unsuccessful web research. It is using 
 
 # Summary
 
-In this demo, there is a parent form component (`ExpenseForm`) filling a parent data type
-(`ExpenseT`). It is using a child form component (`MoneyForm`) which is filling a field 
-of `ExpenseT` of type `MoneyT`.
+In this demo, there is a parent form component ([`ExpenseForm`](src/form/ExpenseForm.tsx)) filling a parent data type
+([`ExpenseT`](src/types/ExpenseT.tsx)). It is using a child form component ([`MoneyFormInput`](src/components/MoneyFormInput.tsx)) which is filling a field 
+of `ExpenseT` of type [`MoneyT`](src/types/MoneyT.tsx).
 
 In short, the key point of this design approach are: 
 - the parent component creates a Control object by means of the react-hook-form hook 
 `useForm<ExpenseT>(...)`.
 - the parent component must pass the name of the field in its form type, which must be filled
 by the child component to it as a parameter. In this case, `ExpenseForm` passes the string
-`amount` to `MoneyForm`, since that is what the field of type `MoneyT` is called in the `ExpenseT` type.
+`amount` to `MoneyFormInput`, since that is what the field of type `MoneyT` is called in the `ExpenseT` type.
 - the child component must then add the correct names of the sub-fields as defined in the child-type `MoneyT` to
-the parameter and use the results as `name` parameter for the `Controller`.
+the parameter and use the results as `name` parameter for its own form subcomponents, eventually 
+passing it to a `Controller`.
 
-`MoneyT` provides a typesafe constant containing the associated field names which is supervised by the compiler. This avoids
+The domain types `MoneyT` and `ExpenseT` each provide a typesafe constant containing the associated field names which is supervised by the compiler. This avoids
 working with string literals depending on the programmatical names of fields.
 
 

@@ -1,8 +1,8 @@
 import {ReactElement} from "react";
 import {Box, Button, Paper, Stack} from "@mui/material";
 import {useForm} from "react-hook-form";
-import ExpenseT, {defaultExpense} from "./ExpenseT";
-import {MoneyForm} from "./MoneyForm";
+import ExpenseT, {defaultExpense, fieldNames} from "../types/ExpenseT";
+import {MoneyFormInput} from "../components/MoneyFormInput";
 import TextFormInput from "../components/TextFormInput";
 
 const ExpenseForm = (): ReactElement => {
@@ -19,13 +19,13 @@ const ExpenseForm = (): ReactElement => {
                     <Stack spacing={4}>
                         <TextFormInput
                             control={control}
-                            fieldName="purpose"
+                            fieldName={fieldNames.purpose}
                             label="Purpose"
                         />
-                        <MoneyForm
+                        <MoneyFormInput
                             control={control}
                             label="How Much Dash?"
-                            fieldName="amount"
+                            fieldName={fieldNames.amount}
                         />
                         <Button onClick={handleSubmit(onSubmit)}>SAVE</Button>
                     </Stack>

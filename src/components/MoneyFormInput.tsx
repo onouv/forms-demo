@@ -1,10 +1,10 @@
 import {ReactElement} from "react";
 import {Box, Divider, Grid, Stack, Typography} from "@mui/material";
-import TextFormInput from "../components/TextFormInput";
+import TextFormInput from "./TextFormInput";
 import FormInputPropsT from "../types/FormInputPropsT";
-import {fieldNames} from "./MoneyT";
+import {fieldNames} from "../types/MoneyT";
 
-export const MoneyForm = ({control, fieldName, label}: FormInputPropsT
+export const MoneyFormInput = ({control, fieldName, label}: FormInputPropsT
 ): ReactElement => (
     <Box>
         <Stack>
