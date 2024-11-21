@@ -1,15 +1,19 @@
 import {ReactElement} from "react";
 import {Box, Button, Paper, Stack} from "@mui/material";
 import {useForm} from "react-hook-form";
-import ExpenseT, {defaultExpense, fieldNames} from "../types/ExpenseT";
-import {MoneyFormInput} from "../components/MoneyFormInput";
+import ExpenseT, {defaultExpense, ExpenseTSchema, fieldNames} from "../types/ExpenseT";
+import MoneyValueFormInput from "../components/MoneyValueFormInput";
 import TextFormInput from "../components/TextFormInput";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const ExpenseForm = (): ReactElement => {
-    const { control, handleSubmit } = useForm<ExpenseT>({ defaultValues: defaultExpense });
+    const { control, handleSubmit } = useForm<ExpenseT>({
+        defaultValues: defaultExpense,
+        resolver: yupResolver(ExpenseTSchema)
+    });
 
     const onSubmit = (data: ExpenseT) => {
-        console.log(`Expense of ${data.amount.magnitude} ${data.amount.currency} for ${data.purpose}`);
+        console.log(`Expense of ${data.amount}  for ${data.purpose}`);
     }
 
     return (
@@ -20,9 +24,9 @@ const ExpenseForm = (): ReactElement => {
                         <TextFormInput
                             control={control}
                             fieldName={fieldNames.purpose}
-                            label="Purpose"
+                            label="What for is Dash?"
                         />
-                        <MoneyFormInput
+                        <MoneyValueFormInput
                             control={control}
                             label="How Much Dash?"
                             fieldName={fieldNames.amount}

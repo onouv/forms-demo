@@ -1,11 +1,18 @@
-import CurrencyE from "./CurrencyE";
+import CurrencyE, {CurrencyESchema} from "./CurrencyE";
+import {InferType, object, string} from "yup";
 
-type MoneyT = {
-    magnitude: number;
-    currency: CurrencyE;
-}
+const TWO_DIGIT_DECIMAL_US: RegExp =
+    /^(0|[1-9][0-9]{0,2}(?:(,[0-9]{3})*|[0-9]*))(\.[0-9]{1,2}){0,1}$/g;
+
+export const MoneyTSchema = object({
+    value: string().required().matches(TWO_DIGIT_DECIMAL_US),
+    currency: CurrencyESchema,
+});
+
+type MoneyT = InferType<typeof MoneyTSchema>;
+
 export const defaultMoney: MoneyT = {
-    magnitude: 0,
+    value: "0.00",
     currency: CurrencyE.EUR,
 };
 
@@ -16,12 +23,12 @@ export const defaultMoney: MoneyT = {
     libs such as react-form-hook, etc.
  */
 type MoneyFieldNamesT = {
-    magnitude: keyof Pick<MoneyT, "magnitude">;
+    value: keyof Pick<MoneyT, "value">;
     currency: keyof Pick<MoneyT, "currency">;
 };
 
 export const fieldNames: MoneyFieldNamesT = {
-    magnitude: "magnitude",
+    value: "value",
     currency: "currency"
 } as const;
 

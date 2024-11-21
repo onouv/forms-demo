@@ -14,7 +14,7 @@ export const MoneyFormInput = ({control, fieldName, label}: FormInputPropsT
                 <Grid item xs={8}>
                     <TextFormInput
                         control={control}
-                        fieldName={`${fieldName}.${fieldNames.magnitude}`}
+                        fieldName={`${fieldName}.${fieldNames.value}`}
                         label="Amount"
                     />
                 </Grid>
