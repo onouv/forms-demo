@@ -2,7 +2,7 @@ import FormInputPropsT from "../types/FormInputPropsT";
 import {Controller} from "react-hook-form";
 import {ReactElement} from "react";
 import {TextField} from "@mui/material";
-import {fieldNames} from "../types/MoneyT";
+
 
 const MoneyValueFormInput = ({fieldName, control, label}: FormInputPropsT): ReactElement => {
 
