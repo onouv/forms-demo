@@ -1,12 +1,9 @@
 import CurrencyE, {CurrencyESchema} from "./CurrencyE";
 import {InferType, object, string} from "yup";
 
-const TWO_DIGIT_DECIMAL_US: RegExp =
-    /^(0|[1-9][0-9]{0,2}(?:(,[0-9]{3})*|[0-9]*))(\.[0-9]{1,2}){0,1}$/g;
-
 export const MoneyTSchema = object({
-    value: string().required().matches(TWO_DIGIT_DECIMAL_US),
-    currency: CurrencyESchema,
+    value: string().required("Must provide a value, even if 0"),
+    currency: CurrencyESchema.required(),
 });
 
 type MoneyT = InferType<typeof MoneyTSchema>;
