@@ -23,28 +23,25 @@ const NumberFormatInput = (props: object) => {
         />);
 }
 
-const MoneyValueFormInput = ({fieldName, control, label}: FormInputPropsT): ReactElement => {
-
-
-    return (
-        <Controller
-            name={fieldName}
-            control={control}
-            render={({field: {onChange, value}, fieldState: { error }}) => (
-                <TextField
-                    helperText={error ? error.message : null}
-                    error={!!error}
+const MoneyValueFormInput = ({fieldName, control, label}: FormInputPropsT): ReactElement => (
+    <Controller
+        name={fieldName}
+        control={control}
+        render={({field: {onChange, value}, fieldState: { error }}) => {
+            const muiProps = {
+                error: !!error,
+                helperText: error ? "only two digits after decimal point allowed" : null
+            };
+            return (
+                <NumericFormat
+                    thousandSeparator
                     onChange={onChange}
                     value={value}
-                    size="medium"
-                    fullWidth
-                    label={label}
-
-                    slots={{ input: NumberFormatInput }}
+                    customInput={TextField}
+                    {...muiProps}
                 />
-            )}
-        />
-    );
-}
+            );
+        }}/>
+);
 
 export default MoneyValueFormInput;
