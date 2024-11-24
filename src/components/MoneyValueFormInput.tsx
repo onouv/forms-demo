@@ -4,24 +4,6 @@ import {ReactElement} from "react";
 import {TextField} from "@mui/material";
 import {NumericFormat} from "react-number-format";
 
-const NumberFormatInput = (props: object) => {
-    // @ts-ignore
-    const {inputRef, onChange, name} = props;
-
-    return (
-        <NumericFormat
-            getInputRef={inputRef}
-            onValueChange={values => {
-                // @ts-ignore
-                onChange({
-                    target: {
-                        name: name,
-                        value: values.value
-                    }
-                })}}
-            thousandSeparator
-        />);
-}
 
 const MoneyValueFormInput = ({fieldName, control, label}: FormInputPropsT): ReactElement => (
     <Controller
@@ -30,15 +12,19 @@ const MoneyValueFormInput = ({fieldName, control, label}: FormInputPropsT): Reac
         render={({field: {onChange, value}, fieldState: { error }}) => {
             const muiProps = {
                 error: !!error,
-                helperText: error ? "only two digits after decimal point allowed" : null
+                helperText: error ? "a value entry is required" : null,
+                label: label
             };
             return (
                 <NumericFormat
                     thousandSeparator
+                    decimalScale={2}
+                    fixedDecimalScale
                     onChange={onChange}
                     value={value}
                     customInput={TextField}
                     {...muiProps}
+
                 />
             );
         }}/>

@@ -1,18 +1,11 @@
 import {defaultMoney, MoneyTSchema} from "./MoneyT";
 import {InferType, object, string} from "yup";
-/*
-type ExpenseT = {
-    purpose: string;
-    amount: MoneyT;
-}
-*/
-const TWO_DIGIT_DECIMAL_US: RegExp =
-    /^(0|[1-9][0-9]{0,2}(?:(,[0-9]{3})*|[0-9]*))(\.[0-9]{1,2}){0,1}$/g;
 
 
 export const ExpenseTSchema = object({
     purpose: string().required(),
-    amount: string().required().matches(TWO_DIGIT_DECIMAL_US),
+    amount: string().required(),
+
 });
 Object.freeze(ExpenseTSchema);
 
