@@ -3,19 +3,19 @@ import {Box, Divider, Grid, Stack, Typography} from "@mui/material";
 import TextFormInput from "./TextFormInput";
 import FormInputPropsT from "../types/FormInputPropsT";
 import {fieldNames} from "../types/MoneyT";
+import MoneyValueFormInput from "./MoneyValueFormInput";
 
 export const MoneyFormInput = ({control, fieldName, label}: FormInputPropsT
 ): ReactElement => (
-    <Box>
-        <Stack>
-            <Divider/>
+
+<Stack>
             <Typography variant="subtitle1">{label}</Typography>
-            <Grid container direction="row" columnSpacing={2}>
+            <Grid container direction="row" columnSpacing={2} justifyContent="flex-start">
                 <Grid item xs={8}>
-                    <TextFormInput
+                    <MoneyValueFormInput
                         control={control}
-                        fieldName={`${fieldName}.${fieldNames.magnitude}`}
-                        label="Amount"
+                        fieldName={`${fieldName}.${fieldNames.value}`}
+                        label="How Much Dash?"
                     />
                 </Grid>
                 <Grid item xs={4}>
@@ -26,6 +26,7 @@ export const MoneyFormInput = ({control, fieldName, label}: FormInputPropsT
                     />
                 </Grid>
             </Grid>
-        </Stack>
-    </Box>
+</Stack>
+
+
 );

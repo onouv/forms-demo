@@ -1,6 +1,6 @@
 type FormInputPropsT = {
     control: any;//Control | undefined;
-    label: string;
+    label?: string;
     fieldName: string;
     onChange?: (event: object) => void;
 };

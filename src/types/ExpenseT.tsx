@@ -1,14 +1,21 @@
-import MoneyT, {defaultMoney} from "./MoneyT";
+import {defaultMoney, MoneyTSchema} from "./MoneyT";
+import {InferType, object, string} from "yup";
 
-type ExpenseT = {
-    purpose: string;
-    amount: MoneyT;
-}
+
+export const ExpenseTSchema = object({
+    purpose: string().required("Must enter a purpose"),
+    amount: MoneyTSchema.required()
+
+});
+Object.freeze(ExpenseTSchema);
+
+type ExpenseT = InferType<typeof ExpenseTSchema>;
 
 export const defaultExpense: ExpenseT = {
     purpose: "",
     amount: defaultMoney
 }
+
 
 //
 // typesafe field names for use with string-based introspection
