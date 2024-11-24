@@ -3,8 +3,8 @@ import {InferType, object, string} from "yup";
 
 
 export const ExpenseTSchema = object({
-    purpose: string().required(),
-    amount: string().required(),
+    purpose: string().required("Must enter a purpose"),
+    amount: MoneyTSchema.required()
 
 });
 Object.freeze(ExpenseTSchema);
@@ -13,7 +13,7 @@ type ExpenseT = InferType<typeof ExpenseTSchema>;
 
 export const defaultExpense: ExpenseT = {
     purpose: "",
-    amount: "0.00"
+    amount: defaultMoney
 }
 
 

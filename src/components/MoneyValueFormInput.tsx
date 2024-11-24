@@ -12,8 +12,9 @@ const MoneyValueFormInput = ({fieldName, control, label}: FormInputPropsT): Reac
         render={({field: {onChange, value}, fieldState: { error }}) => {
             const muiProps = {
                 error: !!error,
-                helperText: error ? "a value entry is required" : null,
-                label: label
+                helperText: error ? "Must enter a value, even if 0" : null,
+                label: label,
+                fullWidth: true
             };
             return (
                 <NumericFormat
