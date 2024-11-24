@@ -2,9 +2,29 @@ import FormInputPropsT from "../types/FormInputPropsT";
 import {Controller} from "react-hook-form";
 import {ReactElement} from "react";
 import {TextField} from "@mui/material";
+import {NumericFormat} from "react-number-format";
 
+const NumberFormatInput = (props: object) => {
+    // @ts-ignore
+    const {inputRef, onChange, name} = props;
+
+    return (
+        <NumericFormat
+            getInputRef={inputRef}
+            onValueChange={values => {
+                // @ts-ignore
+                onChange({
+                    target: {
+                        name: name,
+                        value: values.value
+                    }
+                })}}
+            thousandSeparator
+        />);
+}
 
 const MoneyValueFormInput = ({fieldName, control, label}: FormInputPropsT): ReactElement => {
+
 
     return (
         <Controller
@@ -16,9 +36,12 @@ const MoneyValueFormInput = ({fieldName, control, label}: FormInputPropsT): Reac
                     error={!!error}
                     onChange={onChange}
                     value={value}
+                    size="medium"
                     fullWidth
                     label={label}
-                    variant="outlined"/>
+
+                    slots={{ input: NumberFormatInput }}
+                />
             )}
         />
     );
